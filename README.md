@@ -1,0 +1,1 @@
+This is a minimal proxy based on ERC-1167, which consumes only 21,023 gas for Ether transfers without calldata. Consequently, it can receive Ether from Solidity contracts that invoke it using Solidity's `.send` and `.transfer` methods, without exceeding their gas limits.
