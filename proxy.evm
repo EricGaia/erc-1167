@@ -1,0 +1,41 @@
+// runtime code:
+//                   3d3d36156031573691373d3d3d363d7300000000000000000000000000000000000000005af43d82803e903d91603157fd5bf3
+// init code:
+// 60338060093d393df33d3d36156031573691373d3d3d363d7300000000000000000000000000000000000000005af43d82803e903d91603157fd5bf3
+
+PUSH1 0x33
+DUP1
+PUSH1 0x09
+RETURNDATASIZE  
+CODECOPY
+RETURNDATASIZE
+RETURN
+RETURNDATASIZE    0
+RETURNDATASIZE    0 0  
+CALLDATASIZE      cds 0 0 
+ISZERO            0 0 0 / 1 0 0             // jumps to the end and returns if calldata is zero
+PUSH1 0x31        31 0 0 0
+JUMPI             0 0
+CALLDATASIZE      cds 0 0
+SWAP2             0 0 cds
+CALLDATACOPY       
+RETURNDATASIZE    0
+RETURNDATASIZE    0 0
+RETURNDATASIZE    0 0 0
+CALLDATASIZE      cds 0 0 0 
+RETURNDATASIZE    0 cds 0 0 0
+PUSH20 0x0000000000000000000000000000000000000000  imp 0 cds 0 0 0           // replace with implementation
+GAS               gas imp 0 cds 0 0 0
+DELEGATECALL      suc 0
+RETURNDATASIZE    rds suc 0
+DUP3              0 rds suc 0
+DUP1              0 0 rds suc 0
+RETURNDATACOPY    suc 0
+SWAP1             0 suc
+RETURNDATASIZE    rds 0 suc
+SWAP2             suc 0 rds
+PUSH1 0x31        0x31 suc 0 rds
+JUMPI             0 rds
+REVERT  
+JUMPDEST          0 0 / 0 rds
+RETURN
